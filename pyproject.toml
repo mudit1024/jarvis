@@ -1,0 +1,58 @@
+# Root of the JARVIS monorepo (the Python equivalent of a parent pom.xml).
+# It is not a package itself: it holds shared tool settings and developer tools.
+# Python sub-projects (backend in JAR-4, device-agent later) join as uv workspace members.
+
+[project]
+name = "jarvis"
+version = "0.0.0"
+description = "JARVIS: a personal AI companion (monorepo root)"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+dependencies = []
+
+[dependency-groups]
+# Tools used while developing; never shipped. `uv sync` installs them by default.
+dev = [
+    "pre-commit>=4.7.0",
+    "pyright>=1.1.414",
+    "pytest>=9.2.0",
+    "ruff>=0.17.4",
+]
+
+[tool.uv]
+package = false # this root is a workspace container, not an installable package
+
+# ---------------------------------------------------------------- Ruff (lint + format)
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = [
+    "E", "W", # pycodestyle: basic style errors and warnings
+    "F",      # pyflakes: unused imports, undefined names
+    "I",      # isort: import order
+    "B",      # bugbear: likely bugs
+    "UP",     # pyupgrade: use modern Python syntax
+    "N",      # pep8-naming
+    "SIM",    # simplify: needlessly complex code
+    "S",      # bandit: security issues
+    "PT",     # pytest style
+    "RUF",    # Ruff's own rules
+]
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/**" = ["S101"] # `assert` is how pytest tests are written
+
+# ---------------------------------------------------------------- Pyright (type checking)
+[tool.pyright]
+pythonVersion = "3.13"
+typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"
+exclude = ["**/node_modules", "**/.venv", "**/__pycache__"]
+
+# ---------------------------------------------------------------- pytest
+[tool.pytest.ini_options]
+testpaths = ["tools/tests"]
+addopts = "-ra --strict-markers"
