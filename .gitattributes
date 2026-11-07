@@ -1,0 +1,19 @@
+# Store every text file in Git with LF line endings, whatever the operating system.
+# Windows uses CRLF and Linux/macOS (and our CI runners) use LF; without this file the same
+# line can look "changed" just because of invisible line-ending characters.
+* text=auto eol=lf
+
+# Windows scripts must keep CRLF to run correctly.
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Binary files: never convert or diff as text.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.docx binary
+*.zip binary
