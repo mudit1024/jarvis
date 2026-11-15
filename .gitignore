@@ -1,0 +1,39 @@
+# ---- Secrets: never commit real configuration ----
+.env
+.env.*
+!.env.example
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.egg-info/
+dist/
+build/
+
+# ---- Node / Expo (from JAR-8) ----
+node_modules/
+.expo/
+web-build/
+dist-web/
+*.tsbuildinfo
+
+# ---- Local data and AI models ----
+data/
+*.gguf
+*.safetensors
+
+# ---- Editors and operating systems ----
+.idea/
+.vscode/*
+!.vscode/extensions.json
+*.swp
+.DS_Store
+Thumbs.db

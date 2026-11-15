@@ -15,4 +15,21 @@ mind maps and audio summaries, talk to characters from your books, and (later) c
 | `test` | Release candidates, promoted from `dev`. |
 | `prod` | Released, tagged versions, promoted from `test`. |
 
-Work is tracked in Jira (project key `JAR`). See `CONTRIBUTING.md` (coming in JAR-2) for the workflow.
+Work is tracked in Jira (project key `JAR`). See [CONTRIBUTING.md](CONTRIBUTING.md) for the workflow.
+
+## Getting started
+
+Requirements: [uv](https://docs.astral.sh/uv/), Git, Docker (from JAR-4), Node 22 (from JAR-8).
+
+```bash
+git clone https://github.com/mudit1024/jarvis.git && cd jarvis
+uv sync                       # installs Python tools at the exact locked versions
+uv run pre-commit install     # installs the git hooks
+uv run pytest                 # runs the tests
+```
+
+## Documentation
+
+* [CONTRIBUTING.md](CONTRIBUTING.md): workflow, branches, TDD, Definition of Done
+* [docs/adr/](docs/adr/): architecture decision records
+* [docs/learning/](docs/learning/): learning log, one page per Jira issue
